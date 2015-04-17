@@ -9,45 +9,40 @@
     <link rel="icon" href="favicon.ico">
     <title>HeathStone Cards Search API</title>
     <script type="text/javascript" src="js/validation.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <?php 
+	include('constants.php');
+	?>	
 
 </head>
-<body>	
-<div id="wrapper">		
-
-<!-- Navigation -->
-
-	<div id="navigation_wrapper">		
-	
-	<?php 
-	include('constants.php');
-	include('menu.php');
-	?>		
-	</div>
-		
+<body>		
 <!-- Content -->
 	
-	<div id="content_wrapper">	
+	<div id="wrapper">	
+		<header>
+			<img src="img/header.png">
+		</header>
+		<nav>
+			<?php
+			include('menu.php');
+			?>
+		</nav>
+		<div class="content">
+		<?php 		
+			if(empty($_GET['page'])){
+				$page = 'start.php';
+			}else{
+				$page = $_GET['page'];
+			}	
 			
-	<?php 		
-		if(empty($_GET['page'])){
-		$page = 'start.php';
-		}else{
-		$page = $_GET['page'];
-		}	
-		include $page; 
-	?>
-	
+			include $page; 
+		?>
+		</div>
+		<footer>
+		<?php		
+			include('footer.php');
+		?>	
+		</footer>
 	</div>
-	
-<!-- Footer -->
-
-	<div id="footer_wrapper">	
-	
-	<?php		
-		include('footer.php');
-	?>		
-	</div>
-
-</div>
 	</body>
 </html>

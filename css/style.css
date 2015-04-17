@@ -1,0 +1,54 @@
+#wrapper{
+	margin:0px auto;
+	width: 80%;
+}
+
+#wrapper table tr td{
+	padding: 5px;
+}
+
+header{
+	margin:0px auto;
+	text-align: center;
+}
+
+nav{
+	margin:0px auto;
+}
+nav ul{
+	margin: 0px;
+	padding: 5px;
+}
+
+nav ul li{
+	display: inline;
+	margin: 30px; 
+}
+
+li a{
+	text-decoration: none;
+}
+
+li a:hover{
+	color:green;
+}
+
+footer{
+	margin-top: 50px; 
+}
+
+.content{
+	padding:10px;
+}
+
+.news{
+	color:blue;
+}
+
+.error{
+	color:red;
+}
+
+.success{
+	color:green;
+}
