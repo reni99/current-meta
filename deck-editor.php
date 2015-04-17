@@ -1,26 +1,6 @@
 <?php
 	include_once "constants.php";
 ?>
-<form action="index.php?page=deck-editor.php" method="post">
-<table>
-<caption>
-</caption>
-<tbody>
-<tr>
-<td>
-	Enter class name:
-</td>
-<td>
-	<input type="text" name="deck">
-</td>
-</tr>
-<tr>
-<td colspan="2"><input type="submit" value="Add Deck" name="submit"></td>
-</tr>
-</tbody>
-</table>
-</form>
-
 
 <?php
 if(isset($_POST["submit"])){
@@ -63,3 +43,53 @@ if(isset($_POST["submit"])){
 	}
 }
 ?>
+
+<form action="index.php?page=deck-editor.php" method="post">
+<table>
+<caption>
+</caption>
+<tbody>
+<tr>
+<td>
+	Enter class name:
+</td>
+<td>
+	<input type="text" name="deck">
+</td>
+</tr>
+<tr>
+<td colspan="2"><input type="submit" value="Add Deck" name="submit"></td>
+</tr>
+</tbody>
+</table>
+</form>
+
+<table>
+<tbody>
+	<tr>
+		<th>
+			Decks in Database
+		</th>
+	</tr>
+<?php
+$connection = new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+
+if ($connection->connect_error) {
+	die("Connection failed: " . $connection->connect_error);
+    exit();
+}
+
+$query = "SELECT name, id FROM deck";
+
+if($stmt = $connection->prepare($query)){
+	$stmt->execute();
+	$stmt->bind_result($name, $id);
+    while($stmt->fetch()){
+    	echo "<tr><td>".$name."</td><td><a href='remove-deck.php?id=".$id."'>Remove</a></td></tr>";
+    }
+    $stmt->close();
+}
+
+?>
+</tbody>
+</table>
