@@ -1,0 +1,37 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 -- phpMyAdmin SQL Dump\
+-- version 3.5.5\
+-- http://www.phpmyadmin.net\
+--\
+-- Host: localhost\
+-- Erstellungszeit: 17. Apr 2015 um 13:52\
+-- Server Version: 5.5.29\
+-- PHP-Version: 5.4.10\
+\
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";\
+SET time_zone = "+00:00";\
+\
+--\
+-- Datenbank: `$aybth9@8jh2392hs-current-meta`\
+--\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Tabellenstruktur f\'fcr Tabelle `result`\
+--\
+\
+CREATE TABLE `result` (\
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,\
+  `played` varchar(50) COLLATE latin1_german2_ci NOT NULL,\
+  `against` varchar(50) COLLATE latin1_german2_ci NOT NULL,\
+  `wonlost` tinyint(4) NOT NULL,\
+  `date` date NOT NULL,\
+  PRIMARY KEY (`id`)\
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci AUTO_INCREMENT=5 ;\
+}
