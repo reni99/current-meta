@@ -1,3 +1,7 @@
+body *{
+	font-family: arial;
+}
+
 #wrapper{
 	margin:0px auto;
 	width: 80%;
@@ -52,3 +56,46 @@ footer{
 .success{
 	color:green;
 }
+
+
+.overview td{
+	background-color: #99CCFF;
+}
+
+.overview td:hover{
+	background-color: #99CC00;
+}
+
+.overview tr:not(:first-child){
+	border-top-style: solid;
+	border-width: 1px;
+	border-color:white;
+}
+
+.overview th{
+	background-color: #6699FF;
+	margin: 0px;
+	padding: 10px;
+}
+
+.overview th:first-child{
+	border-top-left-radius: 10px;
+}
+
+.overview th:last-child{
+	border-top-right-radius: 10px;
+}
+
+.overview{
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+}
+
+.overview caption{
+	font-size: 20px;
+	margin-bottom: 10px;
+	
+}
+
+
