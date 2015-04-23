@@ -65,12 +65,23 @@ $connection->close();
 
 <h1>Custom Querying</h1>
 <form name="demoform" action="index.php?page=show-current-meta.php" method="post">
-<table>
+<table id="query-options">
 <caption></caption>
 <tbody>
-<tr>
-	<th>Your Class</th>
-	<td>
+	<tr>
+				<th class="query-option-label">
+			Choose mode 
+		</th>
+	<td class="query-option-view" colspan="10">
+<select id="typeOfData">
+	<option value="vs">VS</option>
+	<option value="faceing-percentage">% Faceing</option>
+</select>
+</td>
+	</tr>
+	<tr>
+	<th class="query-option-label">Select your Deck</th>
+	<td class="query-option-view">
 		<select name="player-class">
 		<?php
           $connection = new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
@@ -91,8 +102,8 @@ $connection->close();
 		?>
 		</select>
 	</td>
-	<th>Opponent Class</th>
-	<td>
+	<th class="query-option-label">Opponent Deck</th>
+	<td class="query-option-view">
 		<select name="opponent-class">
 			<?php
           $connection = new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
@@ -112,22 +123,72 @@ $connection->close();
           }
 			?>
 		</select>
+	</tr>
+<tr>
 	</td>
-	<th>From</th>
-	<td>
+	<th class="query-option-label">Select From</th>
+	<td class="query-option-view">
 		<input type="button" id="calendarButtonFrom" value="Pick Date" />
 	</td>
-	<td>
-	<input type="text" name="dateFrom" id="dateFrom" />
+	<td class="query-option-view">
+	<input type="text" name="datefrom" id="date-from" value="<?php if(isset($_POST['create-result'])){echo $_POST['datefrom'];}?>"/>
 	</td>
-	<th>To</th>
-	<td>
+</tr>
+<tr>
+	<th class="query-option-label">Select To</th>
+	<td class="query-option-view">
 		<input type="button" id="calendarButtonTo" value="Pick Date" />
 	</td>
-	<td>
-	<input type="text" name="dateTo" id="dateTo" />
+	<td class="query-option-view">
+	<input type="text" name="dateto" id="date-to" value="<?php if(isset($_POST['create-result'])){echo $_POST['dateto'];}?>"/>
+	</td>
+</tr>
+<tr>
+	<td colspan="10" class="query-option-view">
+	<input type="submit" name="create-result" value="Create Result"> 
 	</td>
 </tr>
 </tbody>
 </table>
 </form>
+
+<?php
+if(isset($_POST['create-result'])){
+	if(isset($_POST['dateto']) && isset($_POST['datefrom'])){
+?>
+<table class="overview">
+<caption><?php echo "Results for: ".$_POST['player-class']." vs. ".$_POST['opponent-class']. " from ".$_POST['datefrom']. " until ". $_POST['dateto'].""?></caption>
+<tbody></tbody>
+<tr>
+<th>
+	Won
+</th>
+<th>
+	Lost
+</th>
+</tr>
+<tr>
+<?php
+          $connection = new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+              if ($connection->connect_error) {
+                  die("Connection failed: " . $connection->connect_error);
+                  exit();
+              }
+
+           $query = "SELECT COUNT(*) FROM result WHERE '".$_POST['dateto']."' >= date AND '".$_POST['datefrom']."' <= date AND '".$_POST['player-class']."' = played AND '".$_POST['opponent-class']."' = against AND wonlost = 1";
+		   $result = $connection->query($query);
+		   $won = $result->fetch_row();
+		   echo "<td>".$won[0]."</td>";
+
+		   $query = "SELECT COUNT(*) FROM result WHERE '".$_POST['dateto']."' >= date AND '".$_POST['datefrom']."' <= date AND '".$_POST['player-class']."' = played AND '".$_POST['opponent-class']."' = against AND wonlost = 0";
+		   $result = $connection->query($query);
+		   $lost = $result->fetch_row();
+		   echo "<td>".$lost[0]."</td>";
+
+
+	}
+}
+?>
+</tr>
+</table>
+

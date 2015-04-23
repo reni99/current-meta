@@ -98,4 +98,19 @@ footer{
 	
 }
 
+select{
+	border-style: solide;
+	border-width: 1px;	
+}
 
+#query-options{
+	text-align: center;
+}
+
+.query-option-label{
+	text-align: left;
+}
+
+.query-option-view{
+	text-align: left;
+}

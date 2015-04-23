@@ -16,12 +16,12 @@
     <script type="text/javascript">
       window.onload = function() {
         Calendar.setup({
-          dateField      : 'dateFrom',
+          dateField      : 'date-from',
           triggerElement : 'calendarButtonFrom'
         })
 
         Calendar.setup({
-          dateField      : 'dateTo',
+          dateField      : 'date-to',
           triggerElement : 'calendarButtonTo'
         })
       }

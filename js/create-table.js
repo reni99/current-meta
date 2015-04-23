@@ -1,0 +1,5 @@
+
+function TableCreator () {
+	"use strict";
+	
+}
